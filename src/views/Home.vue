@@ -2,6 +2,7 @@
   <div class="home">
     <m-header />
     <tab />
+    <router-view />
   </div>
 </template>
 
