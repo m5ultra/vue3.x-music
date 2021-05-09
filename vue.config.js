@@ -1,5 +1,10 @@
 const registerRouter = require('./backend/router');
 const path = require('path');
+
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -26,11 +31,11 @@ module.exports = {
   },
   productionSourceMap: false,
   publicPath: process.env.NODE_ENV === 'production' ? '/music-next/' : '/',
+  lintOnSave: true,
   chainWebpack: (config) => {
     config.resolve.alias
-      .set('@', path.join(__dirname, 'src'))
-      .set('components', path.join(__dirname, 'src/components'))
-      .set('mixins', path.join(__dirname, 'src/mixins'))
-      .set('store', path.join(__dirname, 'src/store'));
+      .set('@', resolve('src'))
+      .set('assets', resolve('src/assets'))
+      .set('components', resolve('src/components'));
   },
 };
